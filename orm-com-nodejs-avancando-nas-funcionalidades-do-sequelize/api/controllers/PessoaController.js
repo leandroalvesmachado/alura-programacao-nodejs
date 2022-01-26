@@ -2,9 +2,21 @@ const database = require('../models')
 
 class PessoaController {
     
+    static async pegaPessoasAtivas(req, res) {
+        try {
+            // findAll esta utilizando o default scope do model pessoas
+            const pessoasAtivas = await database.Pessoas.findAll()
+
+            return res.status(200).json(pessoasAtivas)
+        } catch (error) {
+            return res.status(500).json(error.message)
+        }
+    }
+
     static async pegaTodasAsPessoas(req, res) {
         try {
-            const todasAsPessoas = await database.Pessoas.findAll()
+            // utilizando o scope definido no model
+            const todasAsPessoas = await database.Pessoas.scope('todos').findAll()
 
             return res.status(200).json(todasAsPessoas)
         } catch (error) {
@@ -179,6 +191,22 @@ class PessoaController {
             })
             
             return res.status(200).json({ mensagem: `id ${matriculaId} restaurado`})
+        } catch (error) {
+            return res.status(500).json(error.message)
+        }
+    }
+
+    static async pegaMatriculas(req, res) {
+        const { estudanteId, matriculaId } = req.params
+        try {
+            const umaMatricula = await database.Matriculas.findOne({
+                where: {
+                    id: Number(matriculaId),
+                    estudante_id: Number(estudanteId)
+                }
+            })
+
+            return res.status(200).json(umaMatricula)
         } catch (error) {
             return res.status(500).json(error.message)
         }
