@@ -28,6 +28,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Pessoas',
+    paranoid: true,
+    // If you want to give a custom name to the deletedAt column
+    // deletedAt: 'destroyTime'
   });
   return Pessoas;
 };

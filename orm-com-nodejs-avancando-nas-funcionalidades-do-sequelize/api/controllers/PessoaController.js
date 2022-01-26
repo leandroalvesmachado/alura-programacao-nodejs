@@ -78,6 +78,24 @@ class PessoaController {
         }
     }
 
+    static async restauraPessoa(req, res) {
+        const { id } = req.params
+
+        try {
+            await database.Pessoas.restore({
+                where: {
+                    id: Number(id)
+                }
+            })
+
+            return res.status(200).json({
+                message: `Pessoa com id ${id} restaurado`
+            })
+        } catch (error) {
+            return res.status(500).json(error.message)
+        }
+    }
+
     // http://localhost:3000/pessoas/:pessoaId/matricula/:matriculaId
     static async pegaUmaMatricula(req, res) {
         const { estudanteId, matriculaId } = req.params
@@ -149,6 +167,23 @@ class PessoaController {
             return res.status(500).json(error.message)
         }
     }
+
+    static async restauraMatricula(req, res) {
+        const { estudanteId, matriculaId } = req.params
+        try {
+            await database.Matriculas.restore({
+                where: {
+                    id: Number(matriculaId),
+                    estudante_id: Number(estudanteId)
+                }
+            })
+            
+            return res.status(200).json({ mensagem: `id ${matriculaId} restaurado`})
+        } catch (error) {
+            return res.status(500).json(error.message)
+        }
+    }
+     
 }
 
 module.exports = PessoaController

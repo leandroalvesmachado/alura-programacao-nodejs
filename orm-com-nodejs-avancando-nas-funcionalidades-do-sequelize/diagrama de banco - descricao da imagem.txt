@@ -1,3 +1,6 @@
+Comandos
+npm outdated (Exibi as versões dos pacotes e suas atualizações)
+
 Diagrama de banco de dados composto por quatro tabelas: Pessoas, Níveis, Turmas e Matrículas.
 
 A tabela Pessoas é composta pelas colunas:
