@@ -197,16 +197,17 @@ class PessoaController {
     }
 
     static async pegaMatriculas(req, res) {
-        const { estudanteId, matriculaId } = req.params
+        const { estudanteId } = req.params
         try {
-            const umaMatricula = await database.Matriculas.findOne({
+            const pessoa = await database.Pessoas.findOne({
                 where: {
-                    id: Number(matriculaId),
-                    estudante_id: Number(estudanteId)
+                    id: Number(estudanteId)
                 }
             })
 
-            return res.status(200).json(umaMatricula)
+            const matriculas = await pessoa.getAulasMatriculadas()
+
+            return res.status(200).json(matriculas)
         } catch (error) {
             return res.status(500).json(error.message)
         }

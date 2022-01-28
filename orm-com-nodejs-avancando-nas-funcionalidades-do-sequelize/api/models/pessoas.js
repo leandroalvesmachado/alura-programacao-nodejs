@@ -16,7 +16,13 @@ module.exports = (sequelize, DataTypes) => {
             }) // Por padrão busca pela coluna PessoaId no relacionamento
 
             Pessoas.hasMany(models.Matriculas, {
-                foreignKey: 'estudante_id'
+                foreignKey: 'estudante_id',
+                // condição de busca no relacionamento (tipo um where), escopo
+                scope: {
+                    status: 'confirmado'
+                },
+                // aulasMatriculadas (nome do escopo) = getAulasMatriculadas
+                as: 'aulasMatriculadas'
             })
         }
     }
