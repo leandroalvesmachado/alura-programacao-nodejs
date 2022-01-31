@@ -13,3 +13,14 @@
 - O cliente quer poder consultar as matrículas por turma e saber quais delas estão lotadas, para organizar melhor as matrículas.
 
 - O cliente gostaria que, uma vez que o cadastro de um estudante fosse desativado, todas as matrículas relativas a este estudante automaticamente passassem a constar como “canceladas”.
+
+<br>
+
+- No caso de queries de SELECT, a ordem lógica é a seguinte:
+- FROM: pega as tabelas onde estão os dados
+- WHERE: filtra os dados
+- GROUP BY: agrega os dados
+- HAVING: filtra os dados agregados
+- SELECT: retorna os resultados
+- ORDER BY: ordena os resultados
+- LIMIT: limita a quantidade de resultados
