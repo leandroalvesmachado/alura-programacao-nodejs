@@ -1,4 +1,5 @@
 const bodyParser = require('body-parser')
+
 const pessoas = require('./pessoasRoute')
 //adicionamos as rotas de niveis e turmas
 const niveis = require('./niveisRoute')

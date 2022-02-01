@@ -4,7 +4,6 @@ const matriculasServices = new MatriculasServices()
 
 class MatriculaController {
 
-    // http://localhost:3000/pessoas/:pessoaId/matricula/:matriculaId
     static async pegaUmaMatricula(req, res) {
         const { estudanteId, matriculaId } = req.params
         try {
